@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-const Basic: React.FC = () => {
+const LoginPage: React.FC = () => {
   const handleSubmit = (email: string, password: string) => {
     console.log("Logged in with email:", email);
   };
@@ -53,4 +53,4 @@ const Basic: React.FC = () => {
   );
 };
 
-export default Basic;
+export default LoginPage;

@@ -1,6 +1,5 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid} from "@mui/material";
 import { useEffect, useState } from "react";
-import employees from "../employees.json";
 import EmployeeService from "../Service/EmployeeService";
 import tableCell from "./tableCell";
 
