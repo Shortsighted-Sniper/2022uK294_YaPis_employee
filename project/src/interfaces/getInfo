@@ -1,0 +1,15 @@
+import { AxiosInstance } from "axios";
+import { defaultAxiosInstance } from "../Service/Api";
+
+const headers = {
+  Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbC5zY2hlcnJlckBnbXguY2giLCJpYXQiOjE2ODU2MjcwMjMsImV4cCI6MTY4NTYzMDYyMywic3ViIjoiMiJ9.dJffb58uFYmEpB7eP7F682O3GbUxgLByF4PIoe2O9cc`,
+};
+
+const EmployeeField = (api: AxiosInstance = defaultAxiosInstance) => ({
+  getEmployees: async () => {
+    const data = await api.get("employees", { headers: headers });
+    return data["data"][0]["url"];
+  },
+});
+
+export default EmployeeField;
