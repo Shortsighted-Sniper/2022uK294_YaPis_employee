@@ -6,10 +6,10 @@ export const defaultAxiosInstance: AxiosInstance = axios.create({
     baseURL: BASE_URL,
 })
 
-/* defaultAxiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig<any>) => {
+defaultAxiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig<any>) => {
     let correctPath: boolean = config.url !== "login";
-    if (localStorage.getItem("accessToken") !== "" && correctPath) {
-        config.headers.Authorization = `Bearer ${localStorage.getItem("accessToken")}`;
+    if (localStorage.getItem("token") !== "" && correctPath) {
+        config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
     }
     return config;
     },
@@ -17,4 +17,4 @@ export const defaultAxiosInstance: AxiosInstance = axios.create({
     (error: AxiosError) => {
         return Promise.reject(error);
     }
-) */
+) 

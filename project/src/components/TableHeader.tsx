@@ -1,5 +1,6 @@
 import { Grid, Typography, AppBar } from "@mui/material";
 import tableCell from "./tableCell";
+import CraeteButton from "./CreatEmployeeButton";
 
 function TableHeader() {
   return (
@@ -17,8 +18,9 @@ function TableHeader() {
         {tableCell("First Name", 2)}
         {tableCell("Last Name", 2)}
         {tableCell("Gender", 1)}
-        {tableCell("Birth Date", 2.25)}
-        {tableCell("Hire Date", 2.25)}
+        {tableCell("Birth Date", 1.75)}
+        {tableCell("Hire Date", 1.75)}
+        {tableCell("Delete", 1)}
         {tableCell("Edit", 1)}
       </Grid>
     </div>

@@ -1,6 +1,6 @@
 import { Paper, Grid, Typography } from "@mui/material";
 
-function employeeFirstName(content: any, width: number) {
+function tableCell(content: any, width: number) {
   return (
     <Grid item xs={width}>
       <Paper elevation={3} square>
@@ -12,4 +12,4 @@ function employeeFirstName(content: any, width: number) {
   );
 }
 
-export default employeeFirstName;
+export default tableCell;

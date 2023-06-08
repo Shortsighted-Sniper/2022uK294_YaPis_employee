@@ -1,9 +1,18 @@
-import { Button } from "@mui/material";
+import { Button} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-function CreateEmployeeButton(){
-    return(
-        <Button>
+function CraeteButton() {
+  const navigate = useNavigate();
 
-        </Button>
-    );
+  const handleClick = () => {
+    navigate("/add/");
+  };
+
+  return (
+    <Button variant="contained" color="secondary" onClick={handleClick}>
+      Create Employee
+    </Button>
+  );
 }
+
+export default CraeteButton;

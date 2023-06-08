@@ -1,11 +1,11 @@
 import TableHeader from "./TableHeader";
-import AllEmployeeData from "./employeeInfo";
+import AllEmployeeDataTable from "./AllEmployeeDataTable";
 
 function DisplayTable() {
   return (
     <div>
       <TableHeader />
-      <AllEmployeeData />
+      <AllEmployeeDataTable />
     </div>
   );
 }

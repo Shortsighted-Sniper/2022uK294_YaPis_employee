@@ -1,56 +1,87 @@
-import React from "react";
+import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useNavigate } from "react-router-dom";
 
-const LoginPage: React.FC = () => {
+function Login() {
+  const navigate = useNavigate();
+
   const handleSubmit = (email: string, password: string) => {
-    console.log("Logged in with email:", email);
+    const data = {
+      email,
+      password,
+    };
+
+    console.log(data);
+    const ax = axios.create();
+
+    ax.post("http://localhost:3030/login", data)
+      .then((response) => {
+        console.log(response.data.accessToken);
+
+        const accessToken = response.data.accessToken;
+        localStorage.setItem("token", accessToken);
+
+        navigate("/", { replace: true });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     <div>
-      <h1>Login</h1>
       <Formik
         initialValues={{ email: "", password: "" }}
-        validate={(values: { email: string; password: string }) => {
+        enableReinitialize
+        validate={(values) => {
           const errors: { email?: string; password?: string } = {};
 
           if (!values.email) {
             errors.email = "Required";
           } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/i.test(values.email)
           ) {
             errors.email = "Invalid email address";
           }
 
-          if (!values.password) {
-            errors.password = "Required";
+          if (values.password === "") {
+            errors.password = "No password provided";
           }
 
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
           handleSubmit(values.email, values.password);
-          setSubmitting(false);
         }}
       >
         {({ isSubmitting, isValid }) => (
           <Form>
-            <label htmlFor="email">E-Mail:</label>
-            <Field type="email" name="email" />
+            <Field
+              type="email"
+              name="email"
+              className="inputField"
+              placeholder="Email"
+            />
+            <br />
             <ErrorMessage name="email" component="div" />
-
-            <label htmlFor="password">Password</label>
-            <Field type="password" name="password" />
+            <Field
+              type="password"
+              name="password"
+              className="inputField"
+              placeholder="Password"
+            />
+            <br />
             <ErrorMessage name="password" component="div" />
-
-            <button type="submit" disabled={isSubmitting || !isValid}>
-              Submit
+            <button
+              type="submit"
+              id="loginButton"
+              disabled={isSubmitting || !isValid}
+            >
+              Login
             </button>
           </Form>
         )}
       </Formik>
     </div>
   );
-};
+}
 
-export default LoginPage;
+export default Login;

@@ -2,6 +2,8 @@ import { Grid} from "@mui/material";
 import { useEffect, useState } from "react";
 import EmployeeService from "../Service/EmployeeService";
 import tableCell from "./tableCell";
+import { Link } from "react-router-dom";
+import DeleteButton from "./DeleteButton";
 
 export interface EmployeeDataEntry {
   id: number;
@@ -12,7 +14,7 @@ export interface EmployeeDataEntry {
   hire_date: string;
 }
 
-const AllEmployeeData = () => {
+const AllEmployeeDataTable = () => {
   const [employeeList, setEmployeeList] = useState<EmployeeDataEntry[]>(
     []
   );
@@ -35,9 +37,10 @@ const AllEmployeeData = () => {
             {tableCell(employee.first_name, 2)}
             {tableCell(employee.last_name, 2)}
             {tableCell(employee.gender, 1)}
-            {tableCell(employee.hire_date, 2.25)}
-            {tableCell(employee.birth_date, 2.25)}
-            {tableCell("[Edit link]", 1)}
+            {tableCell(employee.hire_date, 1.75)}
+            {tableCell(employee.birth_date, 1.75)}
+            {DeleteButton(employee.id)}
+            <Link to={`/edit/${employee.id}`}>{tableCell("Edit", 1)}</Link>
           </Grid>
         ))}
       </Grid>
@@ -45,4 +48,4 @@ const AllEmployeeData = () => {
   );
 };
 
-export default AllEmployeeData;
+export default AllEmployeeDataTable;
